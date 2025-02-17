@@ -3,11 +3,11 @@
 #include <unistd.h>
 /**
  * main - Prints "and that piece of art is useful" - Dora Korpar, 2015-10-19"
- * Return: Always 1 (Success)
+ * Return: Always 1 (Error)
 */
 int main(void)
 {
 	char quote[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
-	write(1, quote, strlen(quote));
+	write(2, quote, strlen(quote));
 	return 1;
 }
