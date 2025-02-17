@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
- * Main - Prints "with proper grammar, but the outcome is a piece of art,"
- * Return - Return is 0 which indicates a successful runtime
+ * main - Prints "with proper grammar, but the outcome is a piece of art,"
+ * Return - Always (0)
 */
 int main(void)
 {
