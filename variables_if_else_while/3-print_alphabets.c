@@ -17,12 +17,13 @@ int main(void)
 		putchar(a);
 		a += 1;
 	}
-	
+
 	while (bigA != 'Z' + 1)
 	{
 		putchar(bigA);
 		bigA += 1;
 	}
-	putchar('$');
+
+	putchar('\n');
 	return (0);
 }
