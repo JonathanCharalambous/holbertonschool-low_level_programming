@@ -27,9 +27,9 @@ int main(void)
 		putchar(' ');
 		if (n2 == 57)
 		{
-		    n1 += 1;
-		    n2 -= reduce;
-		    reduce -= 1;
+			n1 += 1;
+			n2 -= reduce;
+			reduce -= 1;
 		}
 		n2 += 1;
 
