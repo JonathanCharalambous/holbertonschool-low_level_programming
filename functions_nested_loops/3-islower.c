@@ -3,6 +3,7 @@
 
 /**
 	* _islower - determines is a variable c is lowercase or not
+	* @c: The character that will be checked
 	* Return: 1 is lowercase 0 if not
 */
 
