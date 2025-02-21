@@ -2,7 +2,7 @@
 
 /**
 	* print_times_table - shows times table in a grid for variable n
-	* n@: the number we will make the times table for
+	* @n: the number we will make the times table for
 	* Return: void
 */
 
