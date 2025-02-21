@@ -11,7 +11,9 @@ void print_times_table(int n)
 	int num, col, row;
 
 	if (n < 0 || n > 15)
+	{
 		return;
+	}
 		for (row = 0; row <= n; row++)
 		{
 			for (col = 0; col <= n; col++)
@@ -20,7 +22,6 @@ void print_times_table(int n)
 				if (col != 0)
 				{
 					_putchar(','), _putchar(' ');
-
 					if (num < 10)
 					{
 						_putchar(' '), _putchar(' ');
@@ -30,7 +31,6 @@ void print_times_table(int n)
 						_putchar(' ');
 					}
 				}
-
 				if (num >= 100)
 				{
 					_putchar((num / 100) + '0');
