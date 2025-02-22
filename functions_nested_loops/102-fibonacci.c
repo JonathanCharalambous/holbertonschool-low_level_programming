@@ -18,7 +18,7 @@ void printFib(int n)
 		return;
 
 	n3 = n1 + n2;
-	printf("%ld ", n3);
+	printf("%ld", n3);
 
 	if (n > 1)
 		printf(", ");
