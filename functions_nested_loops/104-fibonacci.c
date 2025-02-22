@@ -6,8 +6,9 @@
  */
 int main(void)
 {
-	unsigned long n1 = 1, n2 = 2;
-	unsigned long n1_high = 0; 
+	unsigned long n1 = 1;
+	unsigned long n2 = 2;
+	unsigned long n1_high = 0;
 	unsigned long n1_low = 0;
 	unsigned long n2_high = 0;
 	unsigned long n2_low = 0;
@@ -20,6 +21,7 @@ int main(void)
 	for (count = 3; count <= 92; count++)
 	{
 		unsigned long next = n1 + n2;
+
 		printf(", %lu", next);
 		n1 = n2;
 		n2 = next;
@@ -31,7 +33,7 @@ int main(void)
 	n2_low = n2 % 1000000000;
 
 	for (; count <= 98; count++)
-    {
+	{
 		high = n1_high + n2_high + ((n1_low + n2_low) / 1000000000);
 		low = (n1_low + n2_low) % 1000000000;
 		printf(", %lu%09lu", high, low);
