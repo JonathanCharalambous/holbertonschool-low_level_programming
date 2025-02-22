@@ -10,15 +10,15 @@
 
 void printFib(int n)
 {
-	static long long int n1;
-	static long long int n2 = 1;
-	static long long int n3;
+	static long int n1;
+	static long int n2 = 1;
+	static long int n3;
 
 	if (n == 0)
 		return;
 
 	n3 = n1 + n2;
-	printf("%lld ", n3);
+	printf("%ld ", n3);
 	n1 = n2;
 	n2 = n3;
 	printFib(n - 1);
