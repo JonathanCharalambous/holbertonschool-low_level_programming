@@ -33,6 +33,6 @@ int main(void)
 {
 
 	printFib(52 - 2);
-
+	printf("\n");
 	return (0);
 }
