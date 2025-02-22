@@ -32,7 +32,7 @@ void printFib(int n)
 int main(void)
 {
 
-	printFib(50 - 2);
+	printFib(52 - 2);
 
 	return (0);
 }
