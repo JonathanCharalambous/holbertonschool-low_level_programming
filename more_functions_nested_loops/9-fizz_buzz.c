@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+/**
+ * main - prints Fizz for multiples of 3
+ * Buzz for multples of 5, FizzBuzz for 3 and 5,
+ * or otherwise n
+ * Return: Always 0
+ */
+
 int main(void)
 {
 
