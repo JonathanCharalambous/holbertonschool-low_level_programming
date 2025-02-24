@@ -10,22 +10,16 @@
 
 void print_number(int n)
 {
-
-	unsigned int num = n;
+	unsigned int i = n;
 
 	if (n < 0)
 	{
-		_putchar('-');
-		num = -n;
+		_putchar(45);
+		i = -i;
 	}
-	else
+	if (i / 10)
 	{
-		num = n;
+		print_number(i / 10);
 	}
-
-	if (num / 10)
-	{
-		print_number(num / 10);
-	}
-	_putchar((num % 10) + '0');
+	_putchar(i % 10 + '0');
 }
