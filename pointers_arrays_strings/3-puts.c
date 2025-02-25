@@ -3,8 +3,8 @@
 #include "main.h"
 
 /**
- * reset_to_98 - sets variable n to 98
- * @*n: size of square
+ * _puts - prints a string str
+ * @str: string to print
  * Return: void
  */
 void _puts(char *str)
@@ -13,7 +13,7 @@ void _puts(char *str)
 	while (*str != '\0')
 	{
 		_putchar(*str);
-		*str++;
+		str++;
 	}
 	_putchar('\n');
 
