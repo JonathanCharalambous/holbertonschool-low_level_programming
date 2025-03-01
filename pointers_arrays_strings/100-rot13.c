@@ -18,13 +18,16 @@ char *rot13(char *s)
 
 	while (s[i] != '\0')
 	{
-		if (((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z')) && 
-				(base = (s[i] >= 'a') * ('a' - 'A') + 'A'))
+		base =
+		(s[i] >= 'a' && s[i] <= 'z') * 'a' + (s[i] >= 'A' && s[i] <= 'Z') * 'A';
+
+		if (base)
 		{
 			s[i] = base + ((s[i] - base + 13) % 26);
 		}
 		i++;
 	}
-	
+
+
 	return (s);
 }
