@@ -12,18 +12,19 @@
 
 char *rot13(char *s)
 {
+
 	int i = 0;
-    char base;
+	char base;
 
-    while (s[i] != '\0')
-    {
-	    if (((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z')) && 
-			(base = (s[i] >= 'a') * ('a' - 'A') + 'A'))
+	while (s[i] != '\0')
 	{
-		s[i] = base + ((s[i] - base + 13) % 26);
+		if (((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z')) && 
+				(base = (s[i] >= 'a') * ('a' - 'A') + 'A'))
+		{
+			s[i] = base + ((s[i] - base + 13) % 26);
+		}
+		i++;
 	}
-	i++;
-    }
-
-    return (s);
+	
+	return (s);
 }
