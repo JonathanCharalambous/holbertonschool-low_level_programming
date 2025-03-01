@@ -13,7 +13,7 @@
 char *leet(char *s)
 {
 	char letter[] = {'a', 'e', 'e', 't', 'l'};
-	char num[] = {4, 3, 0, 7, 1};
+	char num[] = {'4', '3', '0', '7', '1'};
 	int i = 0;
 	int j = 0;
 
@@ -23,7 +23,7 @@ char *leet(char *s)
 		{
 			if (s[i] == letter[j] || s[i] == letter[j] - 32)
 			{
-				s[i] = num[i] + '0';
+				s[i] = num[i];
 				break;
 			}
 		}
