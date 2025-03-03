@@ -6,7 +6,7 @@
 
 
 /**
- * _strspn- checks for the first char not in accept
+ * _strpbrk- checks for the first char not in accept
  * and counts the string len from there
  * @s: the string we will check
  * @accept: the chars discluded
@@ -15,22 +15,21 @@
 
 char *_strpbrk(char *s, char *accept)
 {
-        int i = 0;
+	int i = 0;
 
-        while (*s)
-        {
+	while (*s)
+	{
+		for (i = 0; accept[i] != '\0'; i++)
+		{
+			if (*s == accept[i])
+			{
+				return (s);
+			}
+		}
 
-                for (i = 0; accept[i] != '\0'; i++)
-                {
-                        if (*s == accept[i])
-                        {
-                                return (s);
-                        }
-                }
 
+		s++;
+	}
 
-                s++;
-        }
-
-        return (NULL);
+	return (NULL);
 }
