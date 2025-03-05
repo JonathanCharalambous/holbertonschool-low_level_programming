@@ -35,7 +35,7 @@ void reverse_string(char *s, char *rev, int index, int len)
 int is_palindrome(char *s)
 {
 	int len = strlen(s);
-	char *sRev = (char *)malloc(sizeof(char) * (len + 1));
+	char sRev[100];
 
 	reverse_string(s, sRev, 0, len);
 
