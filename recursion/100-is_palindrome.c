@@ -14,16 +14,12 @@
 
 int _strcmp(char *s1, char *s2)
 {
-	int i = 0;
+	if (*s1 == '\0' && *s2 == '\0')
+		return (0);
+	if (*s1 != *s2)
+		return (1);
 
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return (1);
-		i++;
-	}
-
-	return (s1[i] == s2[i] ? 0 : 1);
+	return (_strcmp(s1 + 1, s2 + 1));
 }
 
 /**
@@ -34,13 +30,12 @@ int _strcmp(char *s1, char *s2)
 
 int _strlen(char *s)
 {
-	int len = 0;
 
-	while (s[len] != '\0')
-		len++;
+	if (*s == '\0')
+		return (0);
 
 
-	return (len);
+	return (1 + _strlen(s + 1));
 
 }
 
@@ -74,7 +69,7 @@ void reverse_string(char *s, char *rev, int index, int len)
 int is_palindrome(char *s)
 {
 	int len = _strlen(s);
-	char sRev[100];
+	char sRev[1000];
 
 	reverse_string(s, sRev, 0, len);
 
