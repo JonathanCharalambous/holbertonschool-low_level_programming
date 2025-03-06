@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 
 /**
@@ -13,13 +14,17 @@ int main(int argc, char *argv[])
 {
 	int i = 0;
 	int num = 0;
+	int j = 0;
 
 	for (i = 1; i < argc; i++)
 	{
-		if (*argv[i] >= 'a' && *argv[i] <= 'z')
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			printf("Error\n");
-			return (1);
+			if (!isdigit(argv[i][j]))
+			{
+				printf("Error\n");
+				return (1);
+			}
 		}
 		
 		num += atoi(argv[i]);
