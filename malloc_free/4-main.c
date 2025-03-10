@@ -50,20 +50,4 @@ int main(void)
     print_grid(grid, 6, 4);
     free_grid(grid, 4);
     return (0);
-}
-julien@ubuntu:~/0x0a. malloc, free$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 4-main.c 3-alloc_grid.c 4-free_grid.c -o 4-free_grid
-julien@ubuntu:~/0x0a. malloc, free$ valgrind ./4-free_grid
-==5013== Memcheck, a memory error detector
-==5013== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==5013== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==5013== Command: ./f
-==5013== 
-0 0 0 0 0 0 
-0 0 0 0 0 0 
-0 0 0 0 0 0 
-0 0 0 0 0 0 
-
-0 0 0 98 0 0 
-0 0 0 0 0 0 
-0 0 0 0 0 0 
-0 0 0 0 402 0 
+} 
