@@ -6,15 +6,14 @@
 
 
 /**
- * _str_concat- joins two strings together
+ * str_concat- joins two strings together
  * @s1: The base string
- * @s2 The string to add on
+ * @s2: The string to add on
  * Return: the combined string
  */
 
 char *str_concat(char *s1, char *s2)
 {
-
 	unsigned int size = 0, i = 0, j = 0;
 	char *s;
 
@@ -31,7 +30,7 @@ char *str_concat(char *s1, char *s2)
 		i++;
 		size++;
 	}
-	
+
 	s = malloc((size + 1)  * sizeof(char));
 
 	if (s == NULL)
