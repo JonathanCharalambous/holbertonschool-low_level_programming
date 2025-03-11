@@ -73,6 +73,8 @@ char **strtow(char *str)
 		for (k = 0; k < len; k++)
 			arr[j][k] = str[i++];
 		arr[j][k] = '\0';
+
+		len = 0;
 	}
 
 	arr[words] = NULL;
