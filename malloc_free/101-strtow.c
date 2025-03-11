@@ -40,7 +40,6 @@ int word_count(char *s)
 
 char **strtow(char *str)
 {
-
 	int i = 0, j = 0, k = 0, words = 0, len = 0;
 	char **arr = NULL;
 
@@ -79,6 +78,4 @@ char **strtow(char *str)
 
 	arr[words] = NULL;
 	return (arr);
-
-
 }
