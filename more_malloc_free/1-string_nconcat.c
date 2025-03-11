@@ -32,12 +32,22 @@ unsigned int _strlen(char *s)
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *str = malloc(( (_strlen(s1) + _strlen(s2) + 1) * sizeof(char)));
+	char *str = "";
 	unsigned int i = 0;
 	unsigned int j  = 0;
+	unsigned int s2_len;
+	unsigned int s1_len;
 
-	
-	
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+
+	s1_len = _strlen(s1);
+	s2_len = _strlen(s2);
+
+	str = malloc(((s1_len + s2_len + 1) * sizeof(char)));
 	if (str == NULL)
 		return (NULL);
 
@@ -61,7 +71,5 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		}
 	}
 	str[i] = '\0';
-
 	return (str);
-
 }
