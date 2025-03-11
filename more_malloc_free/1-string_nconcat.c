@@ -11,7 +11,7 @@
  * Return: the length of the strong
  */
 
-int _strlen(char *s)
+unsigned int _strlen(char *s)
 {
 
 	if (*s == '\0')
