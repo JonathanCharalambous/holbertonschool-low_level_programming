@@ -6,6 +6,23 @@
 
 
 /**
+ * _strlen- checks the length of a string
+ * @s: the string to check the length of
+ * Return: the length of the strong
+ */
+
+int _strlen(char *s)
+{
+
+	if (*s == '\0')
+		return (0);
+
+
+	return (1 + _strlen(s + 1));
+
+}
+
+/**
  * string_nconcat- adds two string together to the space of n
  * @s1: the base string
  * @s2: the string that will be added to the base string
@@ -15,8 +32,8 @@
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *str = malloc((strlen(s1) * sizeof(char)) +
-			(strlen(s2) * sizeof(char)) + 1);
+	char *str = malloc((_strlen(s1) * sizeof(char)) +
+			(_strlen(s2) * sizeof(char)) + 1);
 	unsigned int i = 0;
 	unsigned int j  = 0;
 
