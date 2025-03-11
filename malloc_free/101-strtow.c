@@ -58,14 +58,14 @@ char **strtow(char *str)
 		while (str[i] == ' ')
 			i++;
 
-		while (str[i + len] != ' ')
+		while (str[i + len] && str[i + len] != ' ')
 			len++;
 
 		arr[j] = malloc((len + 1) * sizeof(char));
 		if (arr[j] == NULL)
 		{
 			while (j--)
-				free(arr[j--]);
+				free(arr[j]);
 			free(arr);
 			return (NULL);
 		}
