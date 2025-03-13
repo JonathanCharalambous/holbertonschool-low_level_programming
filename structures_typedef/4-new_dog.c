@@ -34,7 +34,6 @@ int _strlen(char *s)
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-
 	dog_t *cute_dog;
 	int name_len = _strlen(name);
 	int owner_len = _strlen(owner);
@@ -69,8 +68,6 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	for (i = 0; i <= owner_len; i++)
 		cute_dog->owner[i] = owner[i];
-
-
 
 	cute_dog->age = age;
 
