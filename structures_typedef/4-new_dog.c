@@ -53,6 +53,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	{
 		free(cute_dog->name);
 		free(cute_dog);
+		return (NULL);
 	}
 
 	cute_dog->owner = malloc(owner_len + 1);
@@ -61,6 +62,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	{
 		free(cute_dog->owner);
 		free(cute_dog);
+		return (NULL);
 	}
 
 	for (i = 0; i <= name_len; i++)
