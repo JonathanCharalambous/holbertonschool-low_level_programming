@@ -35,13 +35,14 @@ void multiply(char *n1, char *n2)
 	int j = 0;
 	int len1 = strlen(n1);
 	int len2 = strlen(n2);
-	int *result = calloc(len1 + len2, sizeof(int));
+	int *result = malloc((len1 + len2) * sizeof(int));
 	int mul = 0;
 	int sum = 0;
 
 	if (result == NULL)
 	{
 		printf("Error\n");
+		free(result);
 		exit(98);
 	}
 	for (i = len1 - 1; i >= 0; i--)
