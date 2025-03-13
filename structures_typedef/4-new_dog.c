@@ -4,6 +4,27 @@
 #include "dog.h"
 
 /**
+ * _strlen - counts the size of a string s
+ * @s: string to check
+ * Return: length on variable s
+ */
+int _strlen(char *s)
+{
+
+	int len = 0;
+
+	while (*s != '\0')
+	{
+		s++;
+		len++;
+	}
+
+	return (len);
+
+}
+
+
+/**
  * new_dog- intializes a dog_t struct using the given paramters
  * @name: name we want to pass
  * @age: age we want to pass
@@ -15,6 +36,9 @@ dog_t *new_dog(char *name, float age, char *owner)
 {
 
 	dog_t *cute_dog;
+	int name_len = _strlen(name);
+	int owner_len = _strlen(owner);
+	int i = 0;
 
 	cute_dog = malloc(sizeof(dog_t));
 	if (cute_dog == NULL)
@@ -22,9 +46,19 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(cute_dog);
 		return (NULL);
 	}
-	cute_dog->name = strdup(name);
+
+	cute_dog->name = malloc(name_len + 1);
+	cute_dog->owner = malloc(owner_len + 1);
+
+	for (i = 0; i <= name_len; i++)
+		cute_dog->name[i] = name[i];
+
+	for (i = 0; i <= owner_len; i++)
+		cute_dog->owner[i] = owner[i];
+	
+	
+
 	cute_dog->age = age;
-	cute_dog->owner = strdup(owner);
 
 	return (cute_dog);
 }
