@@ -31,30 +31,34 @@ int is_digit(char *s)
 
 void multiply(char *n1, char *n2)
 {
-	int i = 0;
-	int j = 0;
 	int len1 = strlen(n1);
 	int len2 = strlen(n2);
-	int *result = calloc((len1 + len2), sizeof(int));
-	int mul = 0;
-	int sum = 0;
+	int *result;
+	int i, j, mul, carry, sum;
 
-	if (result == NULL)
+	result = malloc(sizeof(int) * (len1 + len2));
+	if (!result)
 	{
 		printf("Error\n");
 		exit(98);
 	}
 
+	for (i = 0; i < len1 + len2; i++)
+		result[i] = 0;
+
 	for (i = len1 - 1; i >= 0; i--)
 	{
+		carry = 0;
 		for (j = len2 - 1; j >= 0; j--)
 		{
 			mul = (n1[i] - '0') * (n2[j] - '0');
-			sum = mul + result[i + j + 1];
+			sum = mul + result[i + j + 1] + carry;
 			result[i + j + 1] = sum % 10;
-			result[i + j] += sum / 10;
+			carry = sum / 10;
 		}
+		result[i + j + 1] += carry;
 	}
+
 	i = 0;
 	while (i < len1 + len2 && result[i] == 0)
 		i++;
@@ -64,6 +68,7 @@ void multiply(char *n1, char *n2)
 	else
 		for (; i < len1 + len2; i++)
 			putchar(result[i] + '0');
+    
 	putchar('\n');
 	free(result);
 }
