@@ -1,55 +1,59 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+#include <stdio.h>
 #include "main.h"
 
+/**
+ * is_digit - checks if a string contains a non-digit char
+ * @s: string to be evaluated
+ *
+ * Return: 0 if a non-digit is found, 1 otherwise
+ */
+int is_digit(char *s)
+{
+	int i = 0;
 
+	while (s[i])
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
+/**
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
+ *
+ * Return: the length of the string
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+/**
+ * errors - handles errors for main
+ */
 void errors(void)
 {
 	printf("Error\n");
 	exit(98);
 }
 
-
-int _strlen(char *s)
-{
-	int i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-
 /**
- * is_digit- checks if a string on contains digits
- * @s: the string we want to check
- * Return: 0 if it contains a string, 1 if it does not
- */
-
-
-int is_digit(char *s)
-{
-	int i = 0;
-	while (s[i])
-	{
-		if (s[i] < '0' || s[i] > '9')
-		return (0);
-	i++;
-	}
-	return (1);
-}
-
-
-
-/**
- * main- multiplies two numbers given as arguments
- * @argc: the number of arguments
+ * main - multiplies two positive numbers
+ * @argc: number of arguments
  * @argv: array of arguments
- * Return: Always 0 (Success)
+ *
+ * Return: always 0 (Success)
  */
-
 int main(int argc, char *argv[])
 {
 	char *s1, *s2;
