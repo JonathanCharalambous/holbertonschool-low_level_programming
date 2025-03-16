@@ -42,9 +42,12 @@ void multiply(char *n1, char *n2)
 	if (result == NULL)
 	{
 		printf("Error\n");
-		free(result);
 		exit(98);
 	}
+
+	for (i = 0; i < len1 + len2; i++)
+		result[i] = 0;
+
 	for (i = len1 - 1; i >= 0; i--)
 	{
 		for (j = len2 - 1; j >= 0; j--)
@@ -59,7 +62,7 @@ void multiply(char *n1, char *n2)
 	while (i < len1 + len2 && result[i] == 0)
 		i++;
 
-	if (i == len2 + len1)
+	if (i == len1 + len2)
 		putchar('0');
 	else
 		for (; i < len1 + len2; i++)
