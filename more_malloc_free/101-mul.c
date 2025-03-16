@@ -6,6 +6,13 @@
 
 
 
+void errors(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+
 int _strlen(char *s)
 {
 	int i = 0;
@@ -51,10 +58,7 @@ void multiply(char *n1, char *n2)
 
 	result = malloc(sizeof(int) * (len1 + len2));
 	if (!result)
-	{
-		printf("Error\n");
-		exit(98);
-	}
+		errors();
 
 	for (i = 0; i < len1 + len2; i++)
 		result[i] = 0;
@@ -96,10 +100,7 @@ void multiply(char *n1, char *n2)
 int main(int argc, char *argv[])
 {
 	if (argc != 3 || !is_digit(argv[1]) || !is_digit(argv[2]))
-	{
-		printf("Error\n");
-		return (98);
-	}
+		errors();
 
 	multiply(argv[1], argv[2]);
 	return (0);
