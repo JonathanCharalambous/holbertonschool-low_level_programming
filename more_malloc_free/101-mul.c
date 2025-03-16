@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "main.h"
 
 
 
@@ -76,12 +77,12 @@ void multiply(char *n1, char *n2)
 		i++;
 
 	if (i == len1 + len2)
-		putchar('0');
+		_putchar('0');
 	else
 		for (; i < len1 + len2; i++)
-			putchar(result[i] + '0');
+			_putchar(result[i] + '0');
     
-	putchar('\n');
+	_putchar('\n');
 	free(result);
 }
 
