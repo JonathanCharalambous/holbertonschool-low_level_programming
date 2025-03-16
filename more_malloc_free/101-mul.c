@@ -3,11 +3,23 @@
 #include <string.h>
 #include <ctype.h>
 
+
+
+int _strlen(char *s)
+{
+	int i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+
 /**
  * is_digit- checks if a string on contains digits
  * @s: the string we want to check
  * Return: 0 if it contains a string, 1 if it does not
  */
+
 
 int is_digit(char *s)
 {
@@ -31,8 +43,8 @@ int is_digit(char *s)
 
 void multiply(char *n1, char *n2)
 {
-	int len1 = strlen(n1);
-	int len2 = strlen(n2);
+	int len1 = _strlen(n1);
+	int len2 = _strlen(n2);
 	int *result;
 	int i, j, mul, carry, sum;
 
