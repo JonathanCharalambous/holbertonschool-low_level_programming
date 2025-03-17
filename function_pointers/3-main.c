@@ -9,9 +9,9 @@
  * Return: Always 0 (Success)
  */
 
-int main(int argc,char *argv[])
+int main(int argc, char *argv[])
 {
-	
+
 	char *op = argv[2];
 	int (*calc)(int, int) = get_op_func(op);
 
@@ -27,7 +27,7 @@ int main(int argc,char *argv[])
 		exit(99);
 	}
 
-	if ((*op == '/' || *op == '*') && argv[3] == 0)
+	if ((*op == '/' || *op == '%') && atoi(argv[3]) == 0)
 	{
 		printf("Error\n");
 		exit(100);
@@ -35,6 +35,6 @@ int main(int argc,char *argv[])
 
 	printf("%d\n", calc(atoi(argv[1]), atoi(argv[3])));
 
-	
+
 	return (0);
 }
