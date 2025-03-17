@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "calc.h"
+#include "3-calc.h"
 
 /**
  * get_op_func- determines the operation needed to complete the calculation
