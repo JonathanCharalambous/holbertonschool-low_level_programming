@@ -15,7 +15,23 @@ int main(int argc,char *argv[])
 	char *op = argv[2];
 	int (*calc)(int, int) = get_op_func(op);
 
-	(void) argc;
+	if (argc != 4)
+	{
+		printf("Error\n");
+		exit(98);
+	}
+
+	if (calc == NULL)
+	{
+		printf("Error\n");
+		exit(99);
+	}
+
+	if ((*op == '/' || *op == '*') && argv[3] == 0)
+	{
+		printf("Error\n");
+		exit(100);
+	}
 
 	printf("%d\n", calc(atoi(argv[1]), atoi(argv[3])));
 
