@@ -10,14 +10,20 @@
 int main(int argc, char *argv[])
 {
 	int num_bytes = atoi(argv[1]);
-	int i = 0i;
-    
+	int i = 0;
+
+	if (argc == 1)
+	{
+		printf("Error\n");
+		return (1);
+	}
 	if (num_bytes < 0)
 	{
 		printf("Error\n");
 		return (2);
 	}
 	unsigned char *ptr = (unsigned char *)main;
+
 	for (i = 0; i < num_bytes; i++)
 	{
 		printf("%02x", ptr[i]);
@@ -25,5 +31,5 @@ int main(int argc, char *argv[])
 			printf(" ");
 	}
 	printf("\n");
-	return 0;
+	return (0);
 }
