@@ -9,7 +9,8 @@
  */
 int main(int argc, char *argv[])
 {
-	int num_bytes = atoi(argv[argc - 1]);
+	int num_bytes = atoi(argv[1]);
+	int i = 0;
     
 	if (num_bytes < 0)
 	{
@@ -17,7 +18,7 @@ int main(int argc, char *argv[])
 		return (2);
 	}
 	unsigned char *ptr = (unsigned char *)main;
-	for (int i = 0; i < num_bytes; i++)
+	for (i = 0; i < num_bytes; i++)
 	{
 		printf("%02x ", ptr[i]);
 	}
