@@ -10,7 +10,7 @@
 int main(int argc, char *argv[])
 {
 	int num_bytes = atoi(argv[1]);
-	int i = 0;
+	int i = 0i;
     
 	if (num_bytes < 0)
 	{
@@ -20,7 +20,9 @@ int main(int argc, char *argv[])
 	unsigned char *ptr = (unsigned char *)main;
 	for (i = 0; i < num_bytes; i++)
 	{
-		printf("%02x ", ptr[i]);
+		printf("%02x", ptr[i]);
+		if (i < num_bytes - 1)
+			printf(" ");
 	}
 	printf("\n");
 	return 0;
