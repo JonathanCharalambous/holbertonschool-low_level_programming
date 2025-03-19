@@ -20,10 +20,11 @@ void print_all(const char * const format, ...)
 
 	while (format && format[i])
 	{
-		printf("%s", separator);
 
 		if (format[i] == 'c' || format[i] == 'i' || format[i] == 'f' || format[i] == 's')
 		{
+			printf("%s", separator);
+			
 			switch (format[i])
 			{
 				case 'c':
