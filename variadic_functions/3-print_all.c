@@ -15,16 +15,13 @@ void print_all(const char * const format, ...)
 	char *separator = "";
 	char *str = "";
 
-
 	va_start(args, format);
-
 	while (format && format[i])
 	{
-
-		if (format[i] == 'c' || format[i] == 'i' || format[i] == 'f' || format[i] == 's')
+		if (format[i] == 'c' || format[i] == 'i' ||
+				format[i] == 'f' || format[i] == 's')
 		{
 			printf("%s", separator);
-			
 			switch (format[i])
 			{
 				case 'c':
@@ -42,17 +39,13 @@ void print_all(const char * const format, ...)
 					{
 						str = "(nil)";
 					}
-
 					printf("%s", str);
 					break;
 			}
-
 			separator = ", ";
 		}
-
 		i++;
 	}
-
 	printf("\n");
 	va_end(args);
 }
