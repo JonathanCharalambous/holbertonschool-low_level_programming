@@ -3,34 +3,55 @@
 #include "variadic_functions.h"
 
 /**
- * print_numbers- prints all numbers input as arguments
- * @separator: the char to seperate each number
- * @n: number of arguments
+ * print_all- prints all arguments
+ * @format: the data type of the argument
  * Return: void
  */
 
 void print_all(const char * const format, ...)
 {
 	va_list args;
-	int num = 0;
-	unsigned int i = 0;
+	int i = 0;
+	char *separator = "";
+	char *str = "";
 
 
+	va_start(args, format);
 
-
-	va_start(args, n);
-
-	for (i = 0; i < n; i++)
+	while (format && format[i])
 	{
-		num = va_arg(args, int);
-		printf("%d", num);
+		printf("%s", separator);
 
-		if (separator != NULL && i < n - 1)
-			printf("%s", separator);
+		if (format[i] == 'c' || format[i] == 'i' || format[i] == 'f' || format[i] == 's')
+		{
+			switch (format[i])
+			{
+				case 'c':
+					printf("%c", va_arg(args, int));
+					break;
+				case 'i':
+					printf("%d", va_arg(args, int));
+					break;
+				case 'f':
+					printf("%f", va_arg(args, double));
+					break;
+				case 's':
+					str = va_arg(args, char *);
+					if (!str)
+					{
+						str = "(nil)";
+					}
+
+					printf("%s", str);
+					break;
+			}
+
+			separator = ", ";
+		}
+
+		i++;
 	}
 
 	printf("\n");
-
-
 	va_end(args);
 }
