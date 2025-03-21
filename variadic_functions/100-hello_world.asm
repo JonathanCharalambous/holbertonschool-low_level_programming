@@ -1,18 +1,18 @@
-global _start
+section .data
+msg: DB 'Hello, World', 10
+msgSize EQU $ - msg
+
+global main
 
 section .text
 
-_start:
-	mov rax, 1	;write(
-	mov rdi, 1	;	STDOUT_FILENO,
-	mov rsi, msg	;	"Hello, world!\n",
-	mov rdx, msglen;	sizeof("Hello, world!\n")
-	syscall		;);
-
-	mov rax, 60	;exit(
-	mov rdi, 0	;	EXIT_SUCCESS
-	syscall		;);
-
-section .data
-	msg: db "Hello, world!", 10
-	msglen: equ $ - msg
+	main:
+	mov rax, 4		; function 4
+	mov rbx, 1		; stdout
+	mov rcx, msg		; msg
+	mov rdx, msgSize	; size
+	int 0x80
+	mov rax, 1		; function 1
+	mov rbx, 0		; code
+	int 0x80
+	ret
