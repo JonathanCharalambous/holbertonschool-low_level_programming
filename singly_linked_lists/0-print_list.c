@@ -1,8 +1,8 @@
 #include "lists.h"
 
 
-/*
- * print_list - prints all elements of our linked list
+/**
+ * print_list- prints all elements of our linked list
  * @h: the list we want to print
  * Return: The size of the list
  */
@@ -11,7 +11,7 @@ size_t print_list(const list_t *h)
 {
 	int size = 0;
 
-	while(h != NULL)
+	while (h != NULL)
 	{
 		if (h->str == NULL)
 			printf("[0] (nil)\n");
