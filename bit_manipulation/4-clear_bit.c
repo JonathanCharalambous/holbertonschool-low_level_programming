@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * set_bit- setting a bit to 0 at the index
+ * clear_bit- setting a bit to 0 at the index
  * @n: the pointer to our number
  * @index: the index we want to convert
  * Return: 1 if successfull -1 if not
