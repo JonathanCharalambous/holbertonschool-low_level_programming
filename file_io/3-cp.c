@@ -30,27 +30,25 @@ int _destination(const char *filename)
 
 void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
 {
-	char c[BUFFER_SIZE];
-	ssize_t rd, wr;
+	char buffer[BUFFER_SIZE];
+	ssize_t bytes_read, bytes_written;
 
-	rd = read(fd_src, c, BUFFER_SIZE);
-	while (rd > 0)
+	while ((bytes_read = read(fd_src, buffer, BUFFER_SIZE)) != 0)
 	{
-		wr = write(fd_dst, c, rd);
-		if (wr == -1 || wr != rd)
+		if (bytes_read == -1)
+		{
+			close(fd_src);
+			close(fd_dst);
+			_error(98, "Error: Can't read from file %s\n", src_name);
+		}
+
+		bytes_written = write(fd_dst, buffer, bytes_read);
+		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
 			close(fd_src);
 			close(fd_dst);
 			_error(99, "Error: Can't write to %s\n", dst_name);
 		}
-		rd = read(fd_src, c, BUFFER_SIZE);
-	}
-
-	if (rd == -1)
-	{
-		close(fd_src);
-		close(fd_dst);
-		_error(98, "Error: Can't read from file %s\n", src_name);
 	}
 }
 
