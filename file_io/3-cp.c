@@ -28,30 +28,6 @@ int _destination(const char *filename)
 	return (fd);
 }
 
-void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
-{
-	char buffer[BUFFER_SIZE];
-	ssize_t bytes_read, bytes_written;
-
-	while ((bytes_read = read(fd_src, buffer, BUFFER_SIZE)) != 0)
-	{
-		if (bytes_read == -1)
-		{
-			close(fd_src);
-			close(fd_dst);
-			_error(98, "Error: Can't read from file %s\n", src_name);
-		}
-
-		bytes_written = write(fd_dst, buffer, bytes_read);
-		if (bytes_written == -1 || bytes_written != bytes_read)
-		{
-			close(fd_src);
-			close(fd_dst);
-			_error(99, "Error: Can't write to %s\n", dst_name);
-		}
-	}
-}
-
 void _close(int fd)
 {
 	if (close(fd) == -1)
@@ -60,6 +36,35 @@ void _close(int fd)
 		exit(100);
 	}
 }
+
+void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
+{
+	char buffer[BUFFER_SIZE];
+	ssize_t bytes_read;
+	ssize_t bytes_written;
+
+	while (1)
+	{
+		bytes_read = read(fd_src, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			_close(fd_src);
+			_close(fd_dst);
+			_error(98, "Error: Can't read from file %s\n", src_name);
+		}
+		if (bytes_read == 0)
+			break;
+
+		bytes_written = write(fd_dst, buffer, bytes_read);
+		if (bytes_written == -1 || bytes_written != bytes_read)
+		{
+			_close(fd_src);
+			_close(fd_dst);
+			_error(99, "Error: Can't write to %s\n", dst_name);
+		}
+	}
+}
+
 
 int main(int argc, char *argv[])
 {
