@@ -31,7 +31,7 @@ int _destination(const char *filename)
 void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
 {
 	char c[BUFFER_SIZE];
-	ssize_t rd, wr;
+	ssize_t rd = 0, wr;
 
 	while ((rd = read(fd_src, c, BUFFER_SIZE)) > 0)
 	{
@@ -56,7 +56,7 @@ void _close(int fd)
 {
 	if (close(fd) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
