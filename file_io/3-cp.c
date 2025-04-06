@@ -33,8 +33,19 @@ void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
 	char c[BUFFER_SIZE];
 	ssize_t rd = 0, wr;
 
-	while ((rd = read(fd_src, c, BUFFER_SIZE)) > 0)
+	while (1)
 	{
+		rd = read(fd_src, c, BUFFER_SIZE);
+		if (rd == -1)
+		{
+			close(fd_src);
+			close(fd_dst);
+			_error(98, "Error: Can't read from file %s\n", src_name);
+		}
+
+		if (rd == 0)
+			break;
+
 		wr = write(fd_dst, c, rd);
 		if (wr == -1 || wr != rd)
 		{
@@ -42,13 +53,6 @@ void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
 			close(fd_dst);
 			_error(99, "Error: Can't write to %s\n", dst_name);
 		}
-	}
-
-	if (rd == -1)
-	{
-		close(fd_src);
-		close(fd_dst);
-		_error(98, "Error: Can't read from file %s\n", src_name);
 	}
 }
 
