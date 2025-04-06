@@ -15,7 +15,7 @@ int _source(const char *filename)
 	int fd = open(filename, O_RDONLY);
 
 	if (fd == -1)
-		_error(98, "Error: Can't read from file %s\n", filename);
+		_error(97, "Error: Can't read from file %s\n", filename);
 	return (fd);
 }
 
