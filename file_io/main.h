@@ -4,6 +4,16 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+/**
+ * struct copy_struct - struct for cp
+ * @from: from file
+ * @to: to file
+ * @rd: rd store
+ * @wt: write store
+ * @from_file: open of from file
+ * @to_file: open of to file
+ * @buffer: buffer to read to
+ */
 typedef struct copy_struct
 {
 	char *from;
