@@ -37,11 +37,28 @@ void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
 	{
 		wr = write(fd_dst, c, rd);
 		if (wr == -1 || wr != rd)
+		{
+			close(fd_src);
+			close(fd_dst);
 			_error(99, "Error: Can't write to %s\n", dst_name);
+		}
 	}
 
 	if (rd == -1)
+	{
+		close(fd_src);
+		close(fd_dst);
 		_error(98, "Error: Can't read from file %s\n", src_name);
+	}
+}
+
+void _close(int fd)
+{
+	if (close(fd) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close %d\n", fd);
+		exit(100);
+	}
 }
 
 int main(int argc, char *argv[])
@@ -56,6 +73,9 @@ int main(int argc, char *argv[])
 	fd_dst = _destination(argv[2]);
 
 	_copy(fd_src, fd_dst, argv[1], argv[2]);
+
+	_close(fd_src);
+	_close(fd_dst);
 
 	return (0);
 }
