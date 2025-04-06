@@ -37,24 +37,29 @@ void _close(int fd)
 	}
 }
 
-void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
+void _copy(const char *src_name, const char *dst_name)
 {
 	char buffer[BUFFER_SIZE];
-	ssize_t bytes_read;
-	ssize_t bytes_written;
+	ssize_t bytes_read, bytes_written;
+	int fd_src, fd_dst;
 
-	while (1)
+	fd_src = open(src_name, O_RDONLY);
+	if (fd_src == -1)
+		_error(98, "Error: Can't read from file %s\n", src_name);
+	bytes_read = read(fd_src, buffer, BUFFER_SIZE);
+	if (bytes_read == -1)
 	{
-		bytes_read = read(fd_src, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			_close(fd_src);
-			_close(fd_dst);
-			_error(98, "Error: Can't read from file %s\n", src_name);
-		}
-		if (bytes_read == 0)
-			break;
-
+		_close(fd_src);
+		_error(98, "Error: Can't read from file %s\n", src_name);
+	}
+	fd_dst = open(dst_name, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	if (fd_dst == -1)
+	{
+		_close(fd_src);
+		_error(99, "Error: Can't write to %s\n", dst_name);
+	}
+	while (bytes_read > 0)
+	{
 		bytes_written = write(fd_dst, buffer, bytes_read);
 		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
@@ -62,28 +67,30 @@ void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
 			_close(fd_dst);
 			_error(99, "Error: Can't write to %s\n", dst_name);
 		}
+
+		bytes_read = read(fd_src, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			_close(fd_src);
+			_close(fd_dst);
+			_error(98, "Error: Can't read from file %s\n", src_name);
+		}
 	}
+	_close(fd_src);
+	_close(fd_dst);
 }
+
 
 
 int main(int argc, char *argv[])
 {
-	int fd_src;
-	int fd_dst;
-
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
-	fd_src = _source(argv[1]);
-	fd_dst = _destination(argv[2]);
-
-	_copy(fd_src, fd_dst, argv[1], argv[2]);
-
-	_close(fd_src);
-	_close(fd_dst);
+	_copy(argv[1], argv[2]);
 
 	return (0);
 }
