@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include "main.h"
+
+#define BUFFER_SIZE 1024
+
+
+void _error(int code, const char *msg, const char *arg)
+{
+	dprintf(STDERR_FILENO, msg, arg);
+	exit(code);
+}
+
+int _source(const char *filename)
+{
+	int fd = open(filename, O_RDONLY);
+
+	if (fd == -1)
+		_error(98, "Error: Can't read from file %s\n", filename);
+	return (fd);
+}
+
+int _destination(const char *filename)
+{
+	int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+
+	if (fd == -1)
+		_error(99, "Error: Can't write to %s\n", filename);
+	return (fd);
+}
+
+void _copy(int fd_src, int fd_dst, const char *src_name, const char *dst_name)
+{
+	char c[BUFFER_SIZE];
+	ssize_t rd, wr;
+
+	while ((rd = read(fd_src, c, BUFFER_SIZE)) > 0)
+	{
+		wr = write(fd_dst, c, rd);
+		if (wr == -1 || wr != rd)
+			_error(99, "Error: Can't write to %s\n", dst_name);
+	}
+
+	if (rd == -1)
+		_error(98, "Error: Can't read from file %s\n", src_name);
+}
+
+int main(int argc, char *argv[])
+{
+	int fd_src;
+	int fd_dst;
+
+	if (argc != 3)
+		_error(97, "Usage: cp %s %s\n", "file_from file_to");
+
+	fd_src = _source(argv[1]);
+	fd_dst = _destination(argv[2]);
+
+	_copy(fd_src, fd_dst, argv[1], argv[2]);
+
+	return (0);
+}
