@@ -4,29 +4,24 @@
 #define BUFFER_SIZE 1024
 
 
+/**
+ * _error - prints an error message with the code
+ * @code: The exit code
+ * @msg: The error message
+ * @arg: argument for error message
+ * Return: void
+ */
 void _error(int code, const char *msg, const char *arg)
 {
 	dprintf(STDERR_FILENO, msg, arg);
 	exit(code);
 }
 
-int _source(const char *filename)
-{
-	int fd = open(filename, O_RDONLY);
-
-	if (fd == -1)
-		_error(98, "Error: Can't read from file %s\n", filename);
-	return (fd);
-}
-
-int _destination(const char *filename)
-{
-	int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-
-	if (fd == -1)
-		_error(99, "Error: Can't write to %s\n", filename);
-	return (fd);
-}
+/**
+ * _close - closes a file
+ * @fd: the file descriptor to close
+ * Return: void
+ */
 
 void _close(int fd)
 {
@@ -36,6 +31,13 @@ void _close(int fd)
 		exit(100);
 	}
 }
+
+/**
+ * _copy - copies one file into another
+ * @src_name: the source file
+ * @dst_name: the destination file
+ * Return: void
+ */
 
 void _copy(const char *src_name, const char *dst_name)
 {
@@ -80,7 +82,12 @@ void _copy(const char *src_name, const char *dst_name)
 	_close(fd_dst);
 }
 
-
+/**
+ * main - entry point for program
+ * @argc: number of args
+ * @argv: argument array
+ * Return: 0 if success or an exit code
+ */
 
 int main(int argc, char *argv[])
 {
